@@ -8,47 +8,47 @@ import CartScreen from "./CartScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
 
-const ProfileScreen = () => {
-    return (
-        <Tab.Navigator
-            screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
+// const ProfileScreen = () => {
+//     return (
+//         <Tab.Navigator
+//             screenOptions={({ route }) => ({
+//                 tabBarIcon: ({ focused, color, size }) => {
+//                     let iconName;
                   
-                    if (route.name === "Profile") {
-                      iconName = focused ? "person-sharp" : "person-outline";
-                    } else if (route.name === "Menu") {
-                      iconName = focused ? "restaurant-sharp" : "restaurant-outline";
-                    } else if (route.name === "Cart") {
-                      iconName = focused ? "cart-sharp" : "cart-outline";
-                    }
+//                     if (route.name === "Profile") {
+//                       iconName = focused ? "person-sharp" : "person-outline";
+//                     } else if (route.name === "Menu") {
+//                       iconName = focused ? "restaurant-sharp" : "restaurant-outline";
+//                     } else if (route.name === "Cart") {
+//                       iconName = focused ? "cart-sharp" : "cart-outline";
+//                     }
                   
-                    return <Ionicons name={iconName} size={size} color={color} />;
-                  },
-                tabBarActiveTintColor: "#FF7F00",
-                tabBarInactiveTintColor: "gray",
-            })}
-        >
-            <Tab.Screen
-                name="Profile"
-                component={ProfileDetails}
-                options={{ tabBarLabel: "Profile" }}
-            />
-            <Tab.Screen
-                name="Menu"
-                component={MenuScreen}
-                options={{ tabBarLabel: "Menu" }}
-            />
-            <Tab.Screen
-                name="Cart"
-                component={CartScreen}
-                options={{ tabBarLabel: "Cart" }}
-            />
-        </Tab.Navigator>
-    );
-};
+//                     return <Ionicons name={iconName} size={size} color={color} />;
+//                   },
+//                 tabBarActiveTintColor: "#FF7F00",
+//                 tabBarInactiveTintColor: "gray",
+//             })}
+//         >
+//             <Tab.Screen
+//                 name="Profile"
+//                 component={ProfileDetails}
+//                 options={{ tabBarLabel: "Profile" }}
+//             />
+//             <Tab.Screen
+//                 name="Menu"
+//                 component={MenuScreen}
+//                 options={{ tabBarLabel: "Menu" }}
+//             />
+//             <Tab.Screen
+//                 name="Cart"
+//                 component={CartScreen}
+//                 options={{ tabBarLabel: "Cart" }}
+//             />
+//         </Tab.Navigator>
+//     );
+// };
 
 const ProfileDetails = () => {
     const { formData } = useContext(FormContext);
@@ -160,4 +160,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ProfileScreen;
+export default ProfileDetails;
