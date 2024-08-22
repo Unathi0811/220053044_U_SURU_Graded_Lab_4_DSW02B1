@@ -1,20 +1,22 @@
 import React from 'react';
 import { View, Text, Button, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
+    const navigation = useNavigation();
+
+    const handleGetStartedPress = () => {
+        navigation.navigate('Form1');
+    };
+    
     return (
         <View style={styles.container}>
-        <View style={styles.logoContainer}>
-            <Image source={require('../../assets/logo.jpeg')} style={styles.logo} />
-        </View>
-        <Text style={styles.title}>Unathi's Kitchen</Text>
-        <Text style={styles.subtitle}>Explore all you can eat today!</Text>
-        <Button title="Get Started" onPress={() => navigation.navigate('Tabs')} color="#FF7F00" />
-        {/* <View style={styles.buttonContainer}>
-            <Button title="Menu" onPress={() => navigation.navigate('Tabs', { screen: 'Menu' })} color="#007BFF" />
-            <Button title="Cart" onPress={() => navigation.navigate('Tabs', { screen: 'Cart' })} color="#007BFF" />
-            <Button title="Profile" onPress={() => navigation.navigate('Tabs', { screen: 'Profile' })} color="#007BFF" />
-        </View> */}
+            <View style={styles.logoContainer}>
+                <Image source={require('../../assets/logo.jpeg')} style={styles.logo} />
+            </View>
+            <Text style={styles.title}>Unathi's Kitchen</Text>
+            <Text style={styles.subtitle}>Explore all you can eat today!</Text>
+            <Button title="Get Started" onPress={handleGetStartedPress} color="#FF7F00" />
         </View>
     );
 };

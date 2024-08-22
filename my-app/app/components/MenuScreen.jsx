@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
-import { Dimensions } from 'react-native';
+import { CartContext } from '../contexts/CartContext';
+import uuid from 'react-native-uuid';
 
 const menuData = [
     { id: '1', name: 'Burger', description: 'Juicy beef burger', image: require('../../assets/burger.jpeg'), price: 10.99 },
@@ -13,33 +14,33 @@ const menuData = [
 ];
 
 const MenuScreen = () => {
-    const [cart, setCart] = useState([]);
+    const { cart, addItemToCart } = useContext(CartContext);
 
     const handleAddToCart = (item) => {
-    setCart([...cart, item]);
+        addItemToCart(item);
     };
 
-    return (
-    <View style={styles.container}>
-        <FlatList
-        data={menuData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-            <View style={styles.item}>
-            <Image source={item.image} style={styles.image} />
-            <View style={styles.infoContainer}>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-                <Text style={styles.price}>${item.price}</Text>
-                <TouchableOpacity onPress={() => handleAddToCart(item)}>
-                <Text style={styles.addToCart}>Add to Cart</Text>
-                </TouchableOpacity>
-            </View>
-            </View>
-        )}
-        />
-    </View>
-    );
+return (
+<View style={styles.container}>
+    <FlatList
+    data={menuData}
+    keyExtractor={() => uuid.v4()}
+    renderItem={({ item }) => (
+        <View style={styles.item}>
+        <Image source={item.image} style={styles.image} />
+        <View style={styles.infoContainer}>
+            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.description}>{item.description}</Text>
+            <Text style={styles.price}>${item.price}</Text>
+            <TouchableOpacity onPress={() => handleAddToCart(item)}>
+            <Text style={styles.addToCart}>Add to Cart</Text>
+            </TouchableOpacity>
+        </View>
+        </View>
+    )}
+    />
+</View>
+);
 };
 
 const styles = {
@@ -57,7 +58,7 @@ const styles = {
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        elevation: 5, 
+        elevation: 5,
         flexDirection: 'row',
     },
     image: {
